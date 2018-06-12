@@ -52,7 +52,7 @@ done
 ##################################################################################
 #Check if all the command line options is supplied, exit if that's not the case
 ##################################################################################
-if [ [ -z "${_candidateId}" ] && [ -z "${_projectName}" ] && [ -z "${_testClassPackageAndName}" ] && [ -z "${_pathToProjectDirectory}" ] ]; then
+if [ -z "${_candidateId}" ] && [ -z "${_projectName}" ] && [ -z "${_testClassPackageAndName}" ] && [ -z "${_pathToProjectDirectory}" ] ; then
     usage;
     exit 0
 fi
@@ -75,9 +75,9 @@ fi
 #####################################################
 function generateSonarqubeReport(){
 checkJava;
-javaSrc="${_pathToProjectDirectory}/${_candidateId}/${_projectName}/src"
-javaClass="${_pathToProjectDirectory}/${_candidateId}/${_projectName}/bin/src"
-jUnitSrc="${_pathToProjectDirectory}/${_candidateId}/${_projectName}/test"
+javaSrc="${_pathToProjectDirectory}/${_candidateId}/${_projectName}/src/main/java"
+javaClass="${_pathToProjectDirectory}/${_candidateId}/${_projectName}/build/classes"
+jUnitSrc="${_pathToProjectDirectory}/${_candidateId}/${_projectName}/src/test/java"
 jUnitClass="${_pathToProjectDirectory}/${_candidateId}/${_projectName}/bin/test"
 printMsg "Java source folder - $javaSrc"
 printMsg "Java class folder - $javaClass"
@@ -85,14 +85,14 @@ printMsg "JUnit source folder - $jUnitSrc"
 printMsg "JUnit class folder - $jUnitClass"
 printInfo "TestCases execution started for ${_projectName}"
 
-java -javaagent:/home/kunal/CodeAnalyzer/CodeAnalyzer/tools/jacoco-0.8.1/lib/jacocoagent.jar -cp /home/kunal/CodeAnalyzer/CodeAnalyzer/tools/junit4_4.3.1.jar/junit4_4.3.1.jar:$javaClass:$jUnitClass org.junit.runner.JUnitCore ${_testClassPackageAndName} >>$infoLog
+cd ${_pathToProjectDirectory}/${_candidateId}/${_projectName}/
+gradle clean build>>$infoLog
+gradle jacocoTestReport>>$infoLog
 
 printMsg "TestCases execution completed for ${_projectName}"
 printMsg "Sonar report generation started for ${_projectName}"
 
-/home/kunal/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=${_candidateId} -Dsonar.projectName=${_projectName} -Dsonar.sources=$javaSrc -Dsonar.tests=$jUnitSrc -Dsonar.java.binaries=$jUnitClass -Dsonar.java.coveragePlugin=jacoco -Dsonar.jacoco.reportPaths=/home/kunal/jacoco.exec >>$infoLog
-
-##rm ~/jacoco.exec
+/home/kunal/sonar-scanner/bin/sonar-scanner -Dsonar.language=java -Dsonar.projectKey=${_candidateId} -Dsonar.projectName=${_projectName} -Dsonar.sources=$javaSrc -Dsonar.tests=$jUnitSrc -Dsonar.java.binaries=$javaClass -Dsonar.junit.reportPaths=${_pathToProjectDirectory}/${_candidateId}/${_projectName}/build/reports/jacoco -Dsonar.jacoco.reportPaths=${_pathToProjectDirectory}/${_candidateId}/${_projectName}/build/jacoco/test.exec>>$infoLog
 
 printInfo "Sonar report generation completed for ${_projectName}"
 
