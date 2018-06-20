@@ -1,0 +1,35 @@
+.container {
+    position: absolute;
+    left: 5%;
+    top: 12%;
+    right: 5%;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+table td {
+  overflow: hidden;
+  width: 25%;
+  left: 5%;
+  right: 5%;
+}
+
+table th {
+    overflow: hidden;
+    font-weight: bold;
+    width: 25%;
+    left: 5%;
+    right: 5%;
+}
+
+mat-paginator {
+    bottom: 10%;
+}

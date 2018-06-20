@@ -1,0 +1,51 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-toolbar class="ca-main-toolbar">
+    <mat-toolbar-row>
+      <span class="ca-spacer"></span>
+      <button mat-button class="ca-search-button">
+        <mat-icon >search</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav #sidenav mode="side" class="ca-sidenav" [ngStyle]="{ 'width.em': sidebarWidth }" 
+    opened="true" (mouseenter)="increaseWidth()" (mouseleave)="decreaseWidth()">
+
+    <mat-toolbar class="ca-sidenav-toolbar">
+      <mat-icon mat-list-icon class="ca-app-logo">chrome_reader_mode</mat-icon>
+      <div fxFlex="10"></div>
+      <div *ngIf="sidebarWidth > 6" class="sidenav-item">
+        <h2>CODE-ANALYZER</h2>
+      </div>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <div fxFlex="10"></div>
+        <div *ngIf="sidebarWidth > 6" class="sidenav-item">
+          <p>Dashboard</p>
+        </div>
+      </a> 
+      <!--<a mat-list-item routerLink="/upload" routerLinkActive="active">
+        <mat-icon mat-list-icon>cloud_upload</mat-icon>
+        <div fxFlex="10"></div>
+        <div *ngIf="sidebarWidth > 6" class="sidenav-item">
+          <p>Upload Code</p>
+        </div>
+      </a>-->
+      <a mat-list-item routerLink="/candidate-list" routerLinkActive="active">
+        <mat-icon mat-list-icon>group</mat-icon>
+        <div fxFlex="10"></div>
+        <div *ngIf="sidebarWidth > 6" class="sidenav-item">
+          <p>Candidate List</p>
+        </div>
+      </a> 
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div class="ca-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

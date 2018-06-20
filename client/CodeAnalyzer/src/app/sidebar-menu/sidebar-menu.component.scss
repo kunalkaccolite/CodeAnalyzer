@@ -1,0 +1,62 @@
+ .ca-sidenav-content {
+    display: flex;
+    height: 100%;
+    //margin: 20% auto;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+  }
+
+  .ca-main-toolbar {
+    background-color: skyblue;
+    -webkit-box-shadow: 0 8px 6px -6px #999 !important;
+    -moz-box-shadow: 0 8px 6px -6px #999 !important;
+    box-shadow: 0 8px 6px -6px #999 !important;
+    position: fixed;
+    right: 0;
+    z-index: 2;
+    width: 100%  !important;
+  }
+  
+  .ca-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .ca-search-button {
+    padding: 0 14px;
+  }
+
+  .ca-sidenav {
+    background-color: black;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  
+  mat-nav-list a.active {
+    background: skyblue;
+  }
+  
+  .sidenav-item {
+    color: white;
+    font-size:20px; 
+  }
+
+  .ca-sidenav-toolbar {
+    background-color: black;
+    -webkit-box-shadow: 0 8px 6px -6px #999 !important;
+    -moz-box-shadow: 0 8px 6px -6px #999 !important;
+    box-shadow: 0 8px 6px -6px #999 !important;
+  }
+  
+  .ca-app-logo {
+    color: orange;
+  }
+
+  mat-icon {
+    color: white;
+  }
+  
+  p {
+    font-size: medium;
+    align-content: center;
+  }

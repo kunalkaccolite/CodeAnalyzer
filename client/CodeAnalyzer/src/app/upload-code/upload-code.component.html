@@ -1,0 +1,19 @@
+<div class="lang-upload-container">
+<mat-form-field>
+    <mat-select placeholder="Choose Language" (selectionChange)="selectCompiler($event)">
+      <mat-option *ngFor="let lang of langs" [value]="lang.value">
+        {{ lang.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+<div class="upload-container">
+<button mat-raised-button (click)="openInput()" color="primary">
+    Select Code to Upload
+</button>
+<div fxFlex="2"></div>
+<input id="fileInput" hidden type="file" (change)="fileChange($event.target.files)" >
+<button mat-fab [disabled]="!(fileAttached && langSelected)" (click)="upload()">
+  <mat-icon>cloud_upload</mat-icon>
+</button>
+</div>
+</div>

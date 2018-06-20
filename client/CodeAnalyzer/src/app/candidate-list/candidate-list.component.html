@@ -1,0 +1,48 @@
+<div class="container">
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- JacocoReport Column -->
+    <ng-container matColumnDef="jacocoReport">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Jacoco Report </th>
+      <td mat-cell *matCellDef="let row">
+         <a href="javascript:void(0)" (click)="windowOpen()">{{row.jacocoReport}}</a> 
+        </td>
+    </ng-container>
+
+    <!-- Experience Column -->
+    <ng-container matColumnDef="experience">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Experience (yrs) </th>
+      <td mat-cell *matCellDef="let row"> {{row.experience}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- SonarQube Column -->
+    <ng-container matColumnDef="sonarQubeReport">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SonarQube Report </th>
+      <td mat-cell *matCellDef="let row">
+        <a href="http://localhost:9000/dashboard?id=C001"> {{row.sonarQubeReport}} </a>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

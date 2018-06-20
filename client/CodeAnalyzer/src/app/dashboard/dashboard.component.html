@@ -1,0 +1,40 @@
+<div class="ca-card-container">
+<mat-card class="ca-java-app-card">
+  <mat-card-header>
+    <div mat-card-avatar class="ca-header-image"></div>
+    <mat-card-title>Interview Problem 1</mat-card-title>
+    <mat-card-subtitle>Java</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="" alt="">
+  <mat-card-content>
+    <p>
+      A Java program to add two Integer
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="download()">Download</button>
+    <button mat-button id="button1" [disabled]="button1" (click)="openInput($event,'fileInput1')" >Upload</button>
+    <input id="fileInput1" hidden type="file" (change)="fileChange($event.target.files,'button1')" >
+  </mat-card-actions>
+</mat-card>
+<br>
+<br>
+<mat-card class="ca-java-app-card">
+    <mat-card-header>
+      <div mat-card-avatar class="ca-header-image"></div>
+      <mat-card-title>Interview Problem 2</mat-card-title>
+      <mat-card-subtitle>Java</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="" alt="">
+  <mat-card-content>
+    <p>
+      A Java program to divide two Integer
+    </p>
+  </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button (click)="download()">Download</button>
+      <button mat-button id="button2" [disabled]="button2" (click)="openInput($event,'fileInput2')">Upload</button>
+    <input id="fileInput2" hidden type="file" (change)="fileChange($event.target.files,'button2')" >
+    </mat-card-actions>
+  </mat-card>
+</div>
